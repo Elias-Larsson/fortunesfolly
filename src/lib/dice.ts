@@ -1,9 +1,9 @@
 import type { Dice, Die } from '#lib/types/dice.ts';
 
 export function create_die(sides = 6): Die {
-	return { sides, value: 0 };
+	return { sides, value: 0, hold: false };
 }
-
+  
 export function create_dice(count: number, sides = 6): Dice {
 	return Array.from({ length: count }, () => create_die(sides));
 }
