@@ -37,12 +37,15 @@ function match_combination(
 	return remaining;
 }
 
-function find_best_score(values: number[]): number {
+function find_best_score(values: number[]): { best_score: number, legal_move: boolean }{
 	let best_score = score_of_a_kind(values);
-
+  const legal_move = true;
 	for (const combination of scoring_combinations) {
 		const remaining = match_combination(values, combination);
-		if (remaining === undefined) continue;
+    if (remaining === undefined) {
+      legal_move = false;
+      continue
+    };
 
 		const score = combination.score + find_best_score(remaining);
 		best_score = Math.max(best_score, score);
